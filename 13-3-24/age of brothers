@@ -1,0 +1,16 @@
+public class Main {
+    public static void main(String[] args) {
+        int ageOlderBrother = 56;
+        int ageOlderBrotherNow = 28;
+        int ageYoungerBrotherNow = 24;
+        int ageDifference = ageOlderBrother - ageOlderBrotherNow;
+        int ageYoungerBrotherWhenOlderWas5 = ageYoungerBrotherNow - ageDifference;
+        int agePersonNow = ageOlderBrotherNow + ageDifference;
+        System.out.println("Age of younger brother when older brother was 5: " + ageYoungerBrotherWhenOlderWas5);
+        System.out.println("Age of the person when older brother is 56: " + agePersonNow);
+    }
+}
+
+OUTPUT:
+Age of younger brother when older brother was 5: -4
+Age of the person when older brother is 56: 56
