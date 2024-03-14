@@ -1,0 +1,30 @@
+public class Main{
+    public static void main(String[] args){
+        byte a=10;
+        short b=1000;
+        int c=10000;
+        long d= 10000000000L;
+        float e=3.4f;
+        double f=3.1456789;
+        char g='A';
+        boolean h=true;
+        System.out.println("byte: "+a);
+        System.out.println("short: "+b);
+        System.out.println("int: "+c);
+        System.out.println("long: "+d);
+        System.out.println("float: "+e);
+        System.out.println("double: "+f);
+        System.out.println("char: "+g);
+        System.out.println("boolean: "+h);
+    }
+}
+
+OUTPUT:
+byte: 10
+short: 1000
+int: 10000
+long: 10000000000
+float: 3.4
+double: 3.1456789
+char: A
+boolean: true
