@@ -1,0 +1,48 @@
+public class Main{
+    public static void main(String[] args){
+        int intNum=10;
+        long longNum=intNum;
+        float floatNum=longNum;
+        double doubleNum=floatNum;
+        System.out.println("Implicit Conversion: ");
+        System.out.println("intNum: "+intNum);
+        System.out.println("longNum: "+longNum);
+        System.out.println("floatNum: "+floatNum);
+        System.out.println("doubleNum: "+doubleNum);
+        doubleNum=12345.234567;
+        floatNum=(float) doubleNum;
+        longNum=(long) floatNum;
+        intNum=(int) longNum;
+        System.out.println("Explicit Conversion: ");
+        System.out.println("doubleNum: "+doubleNum);
+        System.out.println("floatNum: "+floatNum);
+        System.out.println("longNum: "+longNum);
+        System.out.println("intNum: "+intNum);
+        int maxValue=Integer.MAX_VALUE;
+        int minValue=Integer.MIN_VALUE;
+        System.out.println("Overflow and Underflow Scenarios: ");
+        System.out.println("Max int value: "+maxValue);
+        System.out.println("Min int value: "+minValue);
+        int overflowValue=maxValue+1;
+        System.out.println("Overflow value: "+overflowValue);
+        int underflowValue=minValue-1;
+        System.out.println("Underflow Value: "+underflowValue);
+    }
+}
+
+OUTPUT:
+Implicit Conversion: 
+intNum: 10
+longNum: 10
+floatNum: 10.0
+doubleNum: 10.0
+Explicit Conversion: 
+doubleNum: 12345.234567
+floatNum: 12345.234
+longNum: 12345
+intNum: 12345
+Overflow and Underflow Scenarios: 
+Max int value: 2147483647
+Min int value: -2147483648
+Overflow value: -2147483648
+Underflow Value: 2147483647
