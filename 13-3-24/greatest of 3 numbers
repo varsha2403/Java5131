@@ -1,0 +1,10 @@
+public class Main {
+    public static void main(String[] args) {
+        int a = 10, b = 20, c = 15;
+        int max = (a > b) ? ((a > c) ? a : c) : ((b > c) ? b : c);
+        System.out.println("The greatest of the three numbers is: " + max);
+    }
+}
+
+OUTPUT:
+The greatest of the three numbers is: 20
