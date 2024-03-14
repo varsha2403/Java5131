@@ -1,0 +1,25 @@
+public class Main {
+    public static boolean orGate(boolean input1, boolean input2) {
+        return input1 || input2;
+    }
+    public static boolean andGate(boolean input1, boolean input2) {
+        return input1 && input2;
+    }
+    public static void main(String[] args) {
+        boolean input1_OR = true;
+        boolean input2_OR = false;
+        System.out.println("OR Gate:");
+        System.out.println(input1_OR + " OR " + input2_OR + " = " + orGate(input1_OR, input2_OR));
+        boolean input1_AND = true;
+        boolean input2_AND = false;
+        System.out.println("\nAND Gate:");
+        System.out.println(input1_AND + " AND " + input2_AND + " = " + andGate(input1_AND, input2_AND));
+    }
+}
+
+OUTPUT:
+OR Gate:
+true OR false = true
+
+AND Gate:
+true AND false = false
