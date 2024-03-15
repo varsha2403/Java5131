@@ -1,0 +1,40 @@
+class MathUtil<T extends Number> {
+    private T value;
+    public MathUtil(T value) {
+        this.value = value;
+    }
+    public T getValue() {
+        return value;
+    }
+    public void setValue(T value) {
+        this.value = value;
+    }
+    public T add(T otherValue) {
+        if (value == null || otherValue == null) {
+            throw new IllegalArgumentException("Values must not be null");
+        }
+        if (value instanceof Integer) {
+            return (T) (Integer) (((Integer) value) + ((Integer) otherValue));
+        } else if (value instanceof Double) {
+            return (T) (Double) (((Double) value) + ((Double) otherValue));
+        } else {
+            throw new IllegalArgumentException("Unsupported type");
+        }
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        MathUtil<Integer> intUtil = new MathUtil<>(5);
+        System.out.println("Integer value: " + intUtil.getValue());
+        System.out.println("Sum with 10: " + intUtil.add(10));
+        MathUtil<Double> doubleUtil = new MathUtil<>(3.14);
+        System.out.println("Double value: " + doubleUtil.getValue());
+        System.out.println("Sum with 2.0: " + doubleUtil.add(2.0));
+    }
+}
+
+OUTPUT:
+Integer value: 5
+Sum with 10: 15
+Double value: 3.14
+Sum with 2.0: 5.140000000000001
