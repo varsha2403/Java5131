@@ -1,0 +1,40 @@
+interface Calculator {
+    int add(int a, int b);
+    int sub(int a, int b);
+    int mul(int a, int b);
+    double div(int a, int b);
+}
+class BasicCalculator implements Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+    public int sub(int a, int b) {
+        return a - b;
+    }
+    public int mul(int a, int b) {
+        return a * b;
+    }
+    public double div(int a, int b) {
+        if (b == 0) {
+            throw new ArithmeticException("Cannot divide by zero");
+        }
+        return (double) a / b;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        BasicCalculator calculator = new BasicCalculator();
+        int x = 10;
+        int y = 5;
+        System.out.println("Addition: " + calculator.add(x, y));
+        System.out.println("Subtraction: " + calculator.sub(x, y));
+        System.out.println("Multiplication: " + calculator.mul(x, y));
+        System.out.println("Division: " + calculator.div(x, y));
+    }
+}
+
+OUTPUT:
+Addition: 15
+Subtraction: 5
+Multiplication: 50
+Division: 2.0
