@@ -1,0 +1,30 @@
+class Example {
+    final int finalVariable = 10;
+}
+class Parent {
+    final void finalMethod() {
+        System.out.println("This is a final method.");
+    }
+}
+class Child extends Parent {
+}
+final class FinalClass {
+    void display() {
+        System.out.println("This is a final class.");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Example example = new Example();
+        System.out.println("Final Variable: " + example.finalVariable);
+        Parent parent = new Parent();
+        parent.finalMethod();
+        FinalClass finalClass = new FinalClass();
+        finalClass.display();
+    }
+}
+
+OUTPUT:
+Final Variable: 10
+This is a final method.
+This is a final class.
