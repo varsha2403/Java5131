@@ -1,0 +1,29 @@
+class OverloadDemo {
+    int sum(int a, int b) {
+        return a + b;
+    }
+    int sum(int a, int b, int c) {
+        return a + b + c;
+    }
+    double sum(double a, double b) {
+        return a + b;
+    }
+    int sum(int b, double a) {
+        return (int) (a + b);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        OverloadDemo obj = new OverloadDemo();
+        System.out.println("Sum of 2 numbers: " + obj.sum(5, 10));
+        System.out.println("Sum of 3 numbers: " + obj.sum(5, 10, 15));
+        System.out.println("Sum of 2 double numbers: " + obj.sum(5.5, 10.5));
+        System.out.println("Sum of int and double: " + obj.sum(5, 10.5));
+    }
+}
+
+OUTPUT:
+Sum of 2 numbers: 15
+Sum of 3 numbers: 30
+Sum of 2 double numbers: 16.0
+Sum of int and double: 15
