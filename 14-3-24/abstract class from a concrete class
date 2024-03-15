@@ -1,0 +1,70 @@
+import java.util.Arrays;
+abstract class AbstractMath {
+    abstract int total(int[] numbers);
+    abstract double average(int[] numbers);
+    double mean(int[] numbers) {
+        int total = total(numbers);
+        return (double) total / numbers.length;
+    }
+    int mode(int[] numbers) {
+        Arrays.sort(numbers);
+        int mode = numbers[0];
+        int count = 1;
+        int maxCount = 1;
+        for (int i = 1; i < numbers.length; i++) {
+            if (numbers[i] == numbers[i - 1]) {
+                count++;
+            } else {
+                if (count > maxCount) {
+                    maxCount = count;
+                    mode = numbers[i - 1];
+                }
+                count = 1;
+            }
+        }
+        if (count > maxCount) {
+            mode = numbers[numbers.length - 1];
+        }
+        return mode;
+    }
+    double median(int[] numbers) {
+        Arrays.sort(numbers);
+        int n = numbers.length;
+        if (n % 2 == 0) {
+            return (double) (numbers[n / 2 - 1] + numbers[n / 2]) / 2;
+        } else {
+            return numbers[n / 2];
+        }
+    }
+}
+class ConcreteMath extends AbstractMath {
+    int total(int[] numbers) {
+        int sum = 0;
+        for (int num : numbers) {
+            sum += num;
+        }
+        return sum;
+    }
+    double average(int[] numbers) {
+        int total = total(numbers);
+        return (double) total / numbers.length;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        ConcreteMath concreteObj = new ConcreteMath();
+        int[] numbers = {1, 2, 3, 4, 5};
+        System.out.println("Total: " + concreteObj.total(numbers));
+        System.out.println("Average: " + concreteObj.average(numbers));
+        System.out.println("Mean: " + concreteObj.mean(numbers));
+        System.out.println("Mode: " + concreteObj.mode(numbers));
+        System.out.println("Median: " + concreteObj.median(numbers));
+    }
+}
+
+OUTPUT:
+Total: 15
+Average: 3.0
+Mean: 3.0
+Mode: 1
+Median: 3.0
