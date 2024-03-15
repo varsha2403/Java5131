@@ -1,0 +1,33 @@
+class Parent {
+    int x = 10;
+    void display() {
+        System.out.println("Parent class method");
+    }
+}
+class Child extends Parent {
+    int y = 20;
+    void accessSuperMembers() {
+        System.out.println("Superclass member x: " + super.x);
+        System.out.println("Subclass member y: " + y);
+    }
+    Child(int x, int y) {
+        super();
+        System.out.println("Inside Child class constructor");
+    }
+    void invokeSuperMethod() {
+        super.display();
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Child obj = new Child(5, 15);
+        obj.accessSuperMembers();
+        obj.invokeSuperMethod();
+    }
+}
+
+OUTPUT:
+Inside Child class constructor
+Superclass member x: 10
+Subclass member y: 20
+Parent class method
