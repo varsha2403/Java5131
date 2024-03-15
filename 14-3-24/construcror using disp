@@ -1,0 +1,35 @@
+class Parent {
+    int a, b;
+    Parent() {
+        this.a = 10;
+        this.b = 15;
+    }
+    Parent(int a, int b) {
+        this.a = a;
+        this.b = b;
+    }
+    void disp() {
+        System.out.println("a = " + a + ", b = " + b);
+    }
+}
+class Child extends Parent {
+    Child() {
+        super();
+    }
+    Child(int a, int b) {
+        super(a, b);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Child obj1 = new Child();
+        obj1.disp();
+
+        Child obj2 = new Child(20, 25);
+        obj2.disp();
+    }
+}
+
+OUTPUT:
+a = 10, b = 15
+a = 20, b = 25
