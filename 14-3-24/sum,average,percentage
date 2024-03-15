@@ -1,0 +1,40 @@
+interface Summable {
+    int sum(int[] numbers);
+}
+interface Averagable {
+    double avg(int[] numbers);
+}
+interface Percentagable {
+    double percentage(double obtained, double total);
+}
+class MathOperations implements Summable, Averagable, Percentagable {
+    public int sum(int[] numbers) {
+        int total = 0;
+        for (int num : numbers) {
+            total += num;
+        }
+        return total;
+    }
+    public double avg(int[] numbers) {
+        int total = sum(numbers);
+        return (double) total / numbers.length;
+    }
+    public double percentage(double obtained, double total) {
+        return (obtained / total) * 100;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        MathOperations math = new MathOperations();
+        int[] numbers = {75, 80, 85, 90, 95};
+
+        System.out.println("Sum: " + math.sum(numbers));
+        System.out.println("Average: " + math.avg(numbers));
+        System.out.println("Percentage: " + math.percentage(350, 500));
+    }
+}
+
+OUTPUT:
+Sum: 425
+Average: 85.0
+Percentage: 70.0
