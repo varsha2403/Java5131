@@ -1,0 +1,28 @@
+class Example {
+    static int staticVariable = 10;
+    static void staticMethod() {
+        System.out.println("This is a static method.");
+    }
+    static {
+        System.out.println("This is a static block.");
+    }
+    static class Nested {
+        void display() {
+            System.out.println("This is a static nested class.");
+        }
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Static Variable: " + Example.staticVariable);
+        Example.staticMethod();
+        Example.Nested nestedObj = new Example.Nested();
+        nestedObj.display();
+    }
+}
+
+OUTPUT:
+This is a static block.
+Static Variable: 10
+This is a static method.
+This is a static nested class.
