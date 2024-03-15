@@ -1,0 +1,23 @@
+class Base {
+    void area(int a, int b) {
+        System.out.println("Area of square: " + (a * a));
+    }
+}
+class Derived extends Base {
+    void area(int a, int b) {
+        System.out.println("Area of rectangle: " + (a * b));
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Base baseObj = new Base();
+        baseObj.area(5, 5);
+
+        Derived derivedObj = new Derived();
+        derivedObj.area(5, 10);
+    }
+}
+
+OUTPUT:
+Area of square: 25
+Area of rectangle: 50
