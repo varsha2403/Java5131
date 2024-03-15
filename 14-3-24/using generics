@@ -1,0 +1,32 @@
+class ArrayUtil {
+    public static <T extends Comparable<T>> T findMinimum(T[] array) {
+        if (array == null || array.length == 0) {
+            throw new IllegalArgumentException("Array must not be empty or null");
+        }
+        T min = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i].compareTo(min) < 0) {
+                min = array[i];
+            }
+        }
+        return min;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Integer[] intArray = {5, 3, 9, 1, 7};
+        Double[] doubleArray = {3.14, 2.71, 1.618, 2.718};
+        String[] stringArray = {"apple", "orange", "banana", "grape"};
+        Integer minInt = ArrayUtil.findMinimum(intArray);
+        System.out.println("Minimum value in Integer array: " + minInt);
+        Double minDouble = ArrayUtil.findMinimum(doubleArray);
+        System.out.println("Minimum value in Double array: " + minDouble);
+        String minString = ArrayUtil.findMinimum(stringArray);
+        System.out.println("Minimum value in String array: " + minString);
+    }
+}
+
+OUTPUT:
+Minimum value in Integer array: 1
+Minimum value in Double array: 1.618
+Minimum value in String array: apple
