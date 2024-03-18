@@ -1,0 +1,52 @@
+class MultiplicationThread extends Thread {
+    private int number;
+
+    public MultiplicationThread(int number) {
+        this.number = number;
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Thread " + number + " is in Runnable state and is calculating the multiplication table...");
+
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(number + " x " + i + " = " + (number * i));
+            try {
+                Thread.sleep(500); // Simulate some computation time
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        System.out.println("Thread " + number + " is in Terminated state.");
+    }
+}
+
+public class Main12 {
+    public static void main(String[] args) {
+        MultiplicationThread thread5 = new MultiplicationThread(5);
+        MultiplicationThread thread10 = new MultiplicationThread(10);
+
+        thread5.start(); // Thread 5 starts executing
+        System.out.println("Thread 5 is in Runnable state.");
+
+        thread10.start(); // Thread 10 starts executing
+        System.out.println("Thread 10 is in Runnable state.");
+
+        try {
+            thread5.join(); // Wait for thread 5 to finish
+            System.out.println("Thread 5 is in Terminated state. Main thread is now continuing.");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            thread10.join(); // Wait for thread 10 to finish
+            System.out.println("Thread 10 is in Terminated state. Main thread is now continuing.");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Main thread is in Terminated state.");
+    }
+}
