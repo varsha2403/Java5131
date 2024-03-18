@@ -1,0 +1,46 @@
+import java.util.Arrays;
+
+public class RemoveDuplicatesFromArray {
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3, 4, 2, 5, 6, 3, 7}; // Example array with duplicates
+
+        // Print the original array
+        System.out.println("Original array: " + Arrays.toString(array));
+
+        // Remove duplicates
+        int[] result = removeDuplicates(array);
+
+        // Print the array after removing duplicates
+        System.out.println("Array after removing duplicates: " + Arrays.toString(result));
+    }
+
+    public static int[] removeDuplicates(int[] array) {
+        // Sort the array to bring duplicates together
+        Arrays.sort(array);
+
+        int length = array.length;
+        // Check if the array is empty or has only one element
+        if (length == 0 || length == 1) {
+            return array;
+        }
+
+        // Initialize variables to store the unique elements and the index for the next unique element
+        int[] uniqueArray = new int[length];
+        int j = 0;
+
+        // Iterate through the sorted array and copy unique elements to the uniqueArray
+        for (int i = 0; i < length - 1; i++) {
+            if (array[i] != array[i + 1]) {
+                uniqueArray[j++] = array[i];
+            }
+        }
+
+        // Copy the last element of the array (which will always be unique)
+        uniqueArray[j++] = array[length - 1];
+
+        // Create a new array with only the unique elements (excluding the trailing zeros)
+        int[] result = Arrays.copyOf(uniqueArray, j);
+        
+        return result;
+    }
+}
