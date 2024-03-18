@@ -1,0 +1,41 @@
+public class PerfectNumbers {
+    
+    // Function to check if a number is perfect
+    static boolean isPerfect(int num) {
+        int sum = 1; // Initialize sum of divisors as 1 (since 1 is a divisor of all numbers)
+        
+        // Find all divisors and add them to sum
+        for (int i = 2; i * i <= num; i++) {
+            if (num % i == 0) {
+                sum += i;
+                if (i * i != num) {
+                    sum += num / i;
+                }
+            }
+        }
+        
+        // If sum of divisors equals to the number, it's perfect
+        return sum == num;
+    }
+
+    // Function to print first n perfect numbers
+    static void printPerfectNumbers(int n) {
+        int count = 0; // Count of perfect numbers found
+        int num = 1;   // Starting with 1
+        
+        // Iterate until n perfect numbers are found
+        while (count < n) {
+            if (isPerfect(num)) {
+                System.out.println(num);
+                count++;
+            }
+            num++;
+        }
+    }
+    
+    public static void main(String[] args) {
+        int n = 5; // Change this to the desired number of perfect numbers to print
+        System.out.println("First " + n + " perfect numbers are:");
+        printPerfectNumbers(n);
+    }
+}
