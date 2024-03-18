@@ -1,0 +1,93 @@
+class EvenNumberThread extends Thread {
+    private int duration;
+    public EvenNumberThread(int duration) {
+        this.duration = duration;
+    }
+    public void run() {
+        System.out.println("EvenNumberThread started");
+        boolean containsEvenNumber = false;
+        for (int i = 0; i <= 10; i += 2) {
+            System.out.println("Even number: " + i);
+            if (i != 0) {
+                containsEvenNumber = true;
+            }
+        }
+        if (containsEvenNumber) {
+            System.out.println("EvenNumberThread will join");
+            try {
+                Thread.sleep(duration);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("EvenNumberThread finished sleeping");
+        } else {
+            System.out.println("EvenNumberThread will not join, it doesn't contain even numbers");
+        }
+        System.out.println("EvenNumberThread completed");
+    }
+}
+class OddNumberThread extends Thread {
+    private int duration;
+    public OddNumberThread(int duration) {
+        this.duration = duration;
+    }
+    public void run() {
+        System.out.println("OddNumberThread started");
+        boolean containsEvenNumber = false;
+        for (int i = 1; i <= 10; i += 2) {
+            System.out.println("Odd number: " + i);
+            if (i != 0) {
+                containsEvenNumber = true;
+            }
+        }
+        if (containsEvenNumber) {
+            System.out.println("OddNumberThread will join");
+            try {
+                Thread.sleep(duration);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("OddNumberThread finished sleeping");
+        } else {
+            System.out.println("OddNumberThread will not join, it doesn't contain even numbers");
+        }
+        System.out.println("OddNumberThread completed");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        EvenNumberThread evenThread = new EvenNumberThread(10000);
+        OddNumberThread oddThread = new OddNumberThread(5000);
+        evenThread.start();
+        oddThread.start();
+        try {
+            evenThread.join();
+            oddThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Main thread completed");
+    }
+}
+
+OUTPUT:
+EvenNumberThread started
+OddNumberThread started
+Odd number: 1
+Even number: 0
+Odd number: 3
+Even number: 2
+Even number: 4
+Even number: 6
+Odd number: 5
+Even number: 8
+Even number: 10
+EvenNumberThread will join
+Odd number: 7
+Odd number: 9
+OddNumberThread will join
+OddNumberThread finished sleeping
+OddNumberThread completed
+EvenNumberThread finished sleeping
+EvenNumberThread completed
+Main thread completed
