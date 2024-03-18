@@ -1,0 +1,111 @@
+class MatrixThread extends Thread {
+    protected int[][] matrix;
+    public MatrixThread(int rows, int cols) {
+        this.matrix = new int[rows][cols];
+    }
+    public void run() {
+        generateMatrix();
+        printMatrix();
+    }
+    protected void generateMatrix() {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[i][j] = (int) (Math.random() * 10);
+            }
+        }
+    }
+    protected void printMatrix() {
+        System.out.println("Matrix:");
+        for (int[] row : matrix) {
+            for (int num : row) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+class TotalElementsThread extends MatrixThread {
+    private int totalElements;
+    public TotalElementsThread(int rows, int cols) {
+        super(rows, cols);
+    }
+    public void run() {
+        super.run();
+        countTotalElements();
+        System.out.println("Total elements in the matrix: " + totalElements);
+    }
+    private void countTotalElements() {
+        totalElements = matrix.length * matrix[0].length;
+    }
+    public int getTotalElements() {
+        return totalElements;
+    }
+}
+class MatrixAdditionThread extends Thread {
+    private int[][] resultMatrix;
+    private int[][] matrix1;
+    private int[][] matrix2;
+    public MatrixAdditionThread(int[][] matrix1, int[][] matrix2) {
+        this.matrix1 = matrix1;
+        this.matrix2 = matrix2;
+        this.resultMatrix = new int[matrix1.length][matrix1[0].length];
+    }
+    public void run() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        for (int i = 0; i < matrix1.length; i++) {
+            for (int j = 0; j < matrix1[0].length; j++) {
+                resultMatrix[i][j] = matrix1[i][j] + matrix2[i][j];
+            }
+        }
+        printResultMatrix();
+    }
+    private void printResultMatrix() {
+        System.out.println("Matrix Addition Result:");
+        for (int[] row : resultMatrix) {
+            for (int num : row) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        MatrixThread t1 = new MatrixThread(3, 3);
+        MatrixThread t2 = new MatrixThread(3, 3);
+        TotalElementsThread t4 = new TotalElementsThread(3, 3);
+        MatrixAdditionThread t3 = new MatrixAdditionThread(t1.matrix, t2.matrix);
+        t1.start();
+        t2.start();
+        t4.start();
+        try {
+            t4.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        t3.start();
+    }
+}
+
+OUTPUT:
+Matrix:
+Matrix:
+Matrix:
+2 5 4 2 9 7 8 2 
+
+2 
+5 5 8 3 1 2 7 8 
+6 
+
+6 8 9 4 5 5 0 
+7 
+5 
+Total elements in the matrix: 9
+Matrix Addition Result:
+6 10 4 
+13 5 13 
+17 10 12 
