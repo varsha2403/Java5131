@@ -1,0 +1,54 @@
+
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            int result1 = calculateSquareRoot(-1);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: Negative Argument in the method requiring non-negative values");
+        }
+        try {
+            DayOfWeek day = DayOfWeek.valueOf("INVALID_DAY");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: Invalid Enum Constant Passed to a Method");
+        }
+        try {
+            setTemperature(-100);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: Setting an Invalid Range for a Method Parameter");
+        }
+        try {
+            validateString(null);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: Empty or Null String Argument in a Method Requiring Non-Empty Strings");
+        }
+    }
+    public static int calculateSquareRoot(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("Negative argument: " + number);
+        }
+        return (int) Math.sqrt(number);
+    }
+    enum DayOfWeek {
+        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
+    }
+    public static void setTemperature(int temperature) {
+        if (temperature < -50 || temperature > 50) {
+            throw new IllegalArgumentException("Invalid temperature range: " + temperature);
+        }
+        System.out.println("Temperature set to: " + temperature);
+    }
+    public static void validateString(String str) {
+        if (str == null || str.isEmpty()) {
+            throw new IllegalArgumentException("Empty or null string argument");
+        }
+        System.out.println("Valid string: " + str);
+    }
+}
+
+OUTPUT:
+Error: Negative Argument in the method requiring non-negative values
+Error: Invalid Enum Constant Passed to a Method
+Error: Setting an Invalid Range for a Method Parameter
+Error: Empty or Null String Argument in a Method Requiring Non-Empty Strings
