@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class AverageCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int sumPositive = 0;
+        int countPositive = 0;
+        int sumNegative = 0;
+        int countNegative = 0;
+
+        System.out.println("Enter numbers (enter -1 to stop):");
+
+        // Read numbers until -1 is encountered
+        int num = scanner.nextInt();
+        while (num != -1) {
+            if (num >= 0) {
+                sumPositive += num;
+                countPositive++;
+            } else {
+                sumNegative += num;
+                countNegative++;
+            }
+            num = scanner.nextInt();
+        }
+
+        // Calculate averages
+        double avgPositive = countPositive > 0 ? (double) sumPositive / countPositive : 0;
+        double avgNegative = countNegative > 0 ? (double) sumNegative / countNegative : 0;
+
+        System.out.println("Average of positive numbers: " + avgPositive);
+        System.out.println("Average of negative numbers: " + avgNegative);
+
+        scanner.close();
+    }
+}
