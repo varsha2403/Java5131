@@ -1,0 +1,44 @@
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
+import java.util.Locale;
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        try {
+            String nonNumericString = "abc";
+            int parsedInt = Integer.parseInt(nonNumericString);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Parsing a Non-Numeric String");
+        }
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter a number: ");
+            int userInput = Integer.parseInt(scanner.nextLine());
+            System.out.println("User input: " + userInput);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Reading User Input Without Validation");
+        }
+        try {
+            DecimalFormat decimalFormat = new DecimalFormat("###.###");
+            String formattedNumber = decimalFormat.format(123.456);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: Formatting Issues in Decimal Format");
+        }
+        try {
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
+            symbols.setDecimalSeparator(',');
+            DecimalFormat decimalFormat = new DecimalFormat("###.###", symbols);
+            Number number = decimalFormat.parse("123,456");
+            System.out.println("Parsed number: " + number);
+        } catch (NumberFormatException | ParseException e) {
+            System.out.println("Error: Incorrectly using localized decimal separators");
+        }
+    }
+}
+
+OUPUT:
+Error: Parsing a Non-Numeric String
+Enter a number: abc
+Error: Reading User Input Without Validation
+Parsed number: 123.456
