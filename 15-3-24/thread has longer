@@ -1,0 +1,58 @@
+class WaitingThread extends Thread {
+    private long waitingTime;
+    public void run() {
+        long startTime = System.currentTimeMillis();
+        synchronized (this) {
+            try {
+                wait(2000); 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        waitingTime = System.currentTimeMillis() - startTime;
+    }
+    public long getWaitingTime() {
+        return waitingTime;
+    }
+}
+class SleepingThread extends Thread {
+    private long sleepingTime;
+    public void run() {
+        long startTime = System.currentTimeMillis();
+        try {
+            Thread.sleep(3000); // Thread sleeps for 3 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        sleepingTime = System.currentTimeMillis() - startTime;
+    }
+    public long getSleepingTime() {
+        return sleepingTime;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        WaitingThread waitingThread = new WaitingThread();
+        SleepingThread sleepingThread = new SleepingThread();
+        waitingThread.start();
+        sleepingThread.start();
+        try {
+            waitingThread.join();
+            sleepingThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        long waitingTime = waitingThread.getWaitingTime();
+        long sleepingTime = sleepingThread.getSleepingTime();
+        if (waitingTime > sleepingTime) {
+            System.out.println("WaitingThread has longer waiting time: " + waitingTime + " milliseconds");
+        } else if (waitingTime < sleepingTime) {
+            System.out.println("SleepingThread has longer sleeping time: " + sleepingTime + " milliseconds");
+        } else {
+            System.out.println("Both threads have equal waiting and sleeping time: " + waitingTime + " milliseconds");
+        }
+    }
+}
+
+OUTPUT:
+SleepingThread has longer sleeping time: 3012 milliseconds
