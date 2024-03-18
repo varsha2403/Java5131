@@ -1,0 +1,25 @@
+class NonIntegerValueException extends Exception {
+    public NonIntegerValueException(String message) {
+        super(message);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        try {
+            int userInput = getUserInput();
+            System.out.println("User input: " + userInput);
+        } catch (NonIntegerValueException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+    public static int getUserInput() throws NonIntegerValueException {
+        double input = 10.5;
+        if (input % 1 != 0) {
+            throw new NonIntegerValueException("Non-integer value entered");
+        }
+        return (int) input;
+    }
+}
+
+OUTPUT:
+Error: Non-integer value entered
