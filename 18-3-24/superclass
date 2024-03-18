@@ -1,0 +1,33 @@
+class Superclass {
+    int num;
+
+    // Parameterized constructor
+    Superclass(int num) {
+        this.num = num;
+        System.out.println("Superclass parameterized constructor called with num: " + num);
+    }
+}
+
+class Subclass extends Superclass {
+    int num; // Hides the num variable in Superclass
+
+    // Parameterized constructor
+    Subclass(int num, int subNum) {
+        super(num); // Calling superclass constructor
+        this.num = subNum;
+        System.out.println("Subclass parameterized constructor called with num: " + num + " and subNum: " + subNum);
+    }
+
+    // Method to display num variables from both Superclass and Subclass
+    void display() {
+        System.out.println("Superclass num: " + super.num);
+        System.out.println("Subclass num: " + this.num);
+    }
+}
+
+public class Main0 {
+    public static void main(String[] args) {
+        Subclass obj = new Subclass(10, 20);
+        obj.display();
+    }
+}
