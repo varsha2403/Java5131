@@ -1,0 +1,18 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner input=new Scanner(System.in);
+        System.out.print("Total Users: ");
+        int total_users=input.nextInt();
+        System.out.print("Staff Users: ");
+        int staff_users=input.nextInt();
+        int non_tech=staff_users/3;
+        int student_users=total_users-(staff_users+non_tech);
+        System.out.println("Student users: "+student_users);
+    }
+}
+
+OUTPUT:
+Total Users: 856
+Staff Users: 126
+Student users: 688
