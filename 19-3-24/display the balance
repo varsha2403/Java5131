@@ -1,0 +1,71 @@
+
+import java.util.Scanner;
+class BankAccount {
+    private String depositorName;
+    private int accountNumber;
+    private String accountType;
+    private double balance;
+    private static final double MIN_BALANCE = 500.00;
+    public BankAccount(String depositorName, int accountNumber, String accountType, double balance) {
+        this.depositorName = depositorName;
+        this.accountNumber = accountNumber;
+        this.accountType = accountType;
+        this.balance = balance;
+    }
+    public void deposit(double amount) {
+        balance += amount;
+    }
+    public void withdraw(double amount) {
+        if (balance - amount >= MIN_BALANCE) {
+            balance -= amount;
+        } else {
+            System.out.println("Insufficient balance. Minimum balance must be " + MIN_BALANCE + ".");
+        }
+    }
+    public void displayBalance() {
+        System.out.println("Depositor Name: " + depositorName);
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Account Type: " + accountType);
+        System.out.println("Balance: " + balance);
+    }
+}
+class Bank {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter depositor name: ");
+        String depositorName = input.nextLine();
+        System.out.print("Enter account number: ");
+        int accountNumber = input.nextInt();
+        System.out.print("Enter account type (Savings/Current): ");
+        input.nextLine();
+        String accountType = input.nextLine();
+        System.out.print("Enter initial balance: ");
+        double balance = input.nextDouble();
+        BankAccount account = new BankAccount(depositorName, accountNumber, accountType, balance);
+        account.displayBalance();
+        System.out.print("Enter amount to deposit: ");
+        double depositAmount = input.nextDouble();
+        account.deposit(depositAmount);
+        System.out.print("Enter amount to withdraw: ");
+        double withdrawAmount = input.nextDouble();
+        account.withdraw(withdrawAmount);
+        account.displayBalance();
+        input.close();
+    }
+}
+
+OUTPUT:
+Enter depositor name: haritha
+Enter account number: 123456789
+Enter account type (Savings/Current): Savings
+Enter initial balance: 1234500
+Depositor Name: haritha
+Account Number: 123456789
+Account Type: Savings
+Balance: 1234500.0
+Enter amount to deposit: 0
+Enter amount to withdraw: 0
+Depositor Name: haritha
+Account Number: 123456789
+Account Type: Savings
+Balance: 1234500.0
